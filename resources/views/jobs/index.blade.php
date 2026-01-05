@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="flex items-end">
-                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Filter</button>
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Filter</button>
                         </div>
                     </form>
                 </div>
@@ -85,7 +85,7 @@
                                         <div class="flex space-x-2">
                                             <a href="{{ route('jobs.show', $job->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">View</a>
                                             @if(Auth::user()->isAdmin())
-                                                <a href="{{ route('jobs.edit', $job->id) }}" class="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">Edit</a>
+                                                <a href="{{ route('jobs.edit', $job->id) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
                                                 <form action="{{ route('jobs.destroy', $job->id) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('DELETE')

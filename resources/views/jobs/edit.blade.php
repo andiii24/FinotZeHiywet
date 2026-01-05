@@ -31,7 +31,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Job Title</label>
-                            <input type="text" name="name" id="name" value="{{ old('name', $job->name) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                            <input type="text" name="name" id="name" value="{{ old('name', $job->name) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required>
                         </div>
 
                         <div>
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Update Job</button>
+                        <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Update Job</button>
                     </div>
                 </form>
             </div>

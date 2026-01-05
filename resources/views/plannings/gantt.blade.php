@@ -51,7 +51,7 @@
                                 <span>{{ $planning->progress_percentage }}%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-indigo-600 h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
+                                <div class="bg-primary h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
                             </div>
                         </div>
                     @endif

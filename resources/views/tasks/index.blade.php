@@ -21,7 +21,7 @@
                     <form action="{{ route('tasks.index') }}" method="GET" class="flex flex-wrap gap-4">
                         <div class="flex-1 min-w-[200px]">
                             <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                            <select id="status" name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="status" name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="">All Statuses</option>
                                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                                 <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="flex-1 min-w-[200px]">
                             <label for="priority" class="block text-sm font-medium text-gray-700 mb-1">Priority</label>
-                            <select id="priority" name="priority" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="priority" name="priority" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="">All Priorities</option>
                                 <option value="low" {{ request('priority') == 'low' ? 'selected' : '' }}>Low</option>
                                 <option value="medium" {{ request('priority') == 'medium' ? 'selected' : '' }}>Medium</option>
@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <div class="flex items-end">
-                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Filter</button>
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Filter</button>
                         </div>
                     </form>
                 </div>
@@ -104,7 +104,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
                                             <a href="{{ route('tasks.show', $task->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">View</a>
-                                            <a href="{{ route('tasks.edit', $task->id) }}" class="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">Edit</a>
+                                            <a href="{{ route('tasks.edit', $task->id) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
                                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')

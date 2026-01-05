@@ -24,7 +24,7 @@
                         </div>
                         <div>
                             @if(Auth::user()->isAdmin() || Auth::id() == $payment->user_id)
-                                <a href="{{ route('monthly-payments.edit', $payment->id) }}" class="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">Edit</a>
+                                <a href="{{ route('monthly-payments.edit', $payment->id) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
                             @endif
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                         <div class="mt-2">
                                             <form action="{{ route('monthly-payments.status', $payment->id) }}" method="POST" class="inline-flex space-x-2">
                                                 @csrf
-                                                <select name="status" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                                                <select name="status" class="rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary text-sm">
                                                     <option value="pending" {{ $payment->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                                     <option value="approved" {{ $payment->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                                     <option value="rejected" {{ $payment->status == 'rejected' ? 'selected' : '' }}>Rejected</option>

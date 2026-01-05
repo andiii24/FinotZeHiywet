@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold text-gray-800">{{ Auth::user()->isAdmin() ? 'All Contributors' : 'My Contributions' }}</h1>
         <form method="GET" action="{{ route('social-contributors.index') }}" class="flex items-center space-x-2">
-            <select name="contribution_id" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            <select name="contribution_id" class="rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                 <option value="">All Contributions</option>
                 @isset($allContributions)
                     @foreach($allContributions as $c)
@@ -13,7 +13,7 @@
                     @endforeach
                 @endisset
             </select>
-            <button class="px-3 py-2 bg-indigo-600 text-white rounded-md">Filter</button>
+            <button class="px-3 py-2 bg-primary text-white rounded-md">Filter</button>
         </form>
     </div>
 

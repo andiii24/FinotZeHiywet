@@ -36,7 +36,7 @@
                                         <div class="flex space-x-2">
                                             <a href="{{ route('group_cats.show', $group_cat->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">View</a>
                                             @if(auth()->user()->isAdmin())
-                                                <a href="{{ route('admin.group_cats.edit', $group_cat->id) }}" class="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">Edit</a>
+                                                <a href="{{ route('admin.group_cats.edit', $group_cat->id) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
                                                 <form action="{{ route('admin.group_cats.destroy', $group_cat->id) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('DELETE')

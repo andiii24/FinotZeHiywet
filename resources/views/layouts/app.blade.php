@@ -40,7 +40,7 @@
                 @auth
                     <!-- Mobile menu button -->
                     <div class="lg:hidden fixed top-0 right-0 p-4 z-20">
-                        <button id="mobile-menu-button" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-2 rounded-md shadow-lg hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300">
+                        <button id="mobile-menu-button" class="bg-gradient-to-r from-primary to-secondary text-white p-2 rounded-md shadow-lg hover:from-primary hover:to-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>

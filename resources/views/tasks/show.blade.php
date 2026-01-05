@@ -8,7 +8,7 @@
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">Task Details</h2>
                     <div class="space-x-2">
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Edit Task</a>
+                        <a href="{{ route('tasks.edit', $task->id) }}" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Edit Task</a>
                         <a href="{{ route('tasks.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Back to Tasks</a>
                     </div>
                 </div>

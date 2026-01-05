@@ -96,7 +96,7 @@
                         @if(Auth::user()->isAdmin() && isset($users))
                             <div>
                                 <label for="user_id" class="block text-sm font-medium text-gray-700">User</label>
-                                <select id="user_id" name="user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" onchange="loadUserBacklog(this.value)">
+                                <select id="user_id" name="user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" onchange="loadUserBacklog(this.value)">
                                     <option value="">Select User</option>
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
@@ -147,7 +147,7 @@
                 </div>
                 <input type="hidden" name="month" value="{{ $nextUnpaidMonth }}">
             @else
-                <input type="month" name="month" id="month" value="{{ old('month', $nextMonth ?? '') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <input type="month" name="month" id="month" value="{{ old('month', $nextMonth ?? '') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                 <p class="mt-1 text-sm text-gray-500">Select the month for this payment</p>
             @endif
         </div>
@@ -177,7 +177,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span class="text-gray-500 sm:text-sm">$</span>
                                 </div>
-                                <input type="number" step="0.01" min="0" name="amount" id="amount" value="{{ old('amount') }}" class="pl-7 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                                <input type="number" step="0.01" min="0" name="amount" id="amount" value="{{ old('amount') }}" class="pl-7 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required>
                             </div>
                             <div class="mt-2 flex space-x-2" id="quick-payment-buttons">
                                 @if(isset($backlog) && $backlog['total_owed'] > 0)
@@ -198,7 +198,7 @@
 
                         <div>
                             <label for="payment_method" class="block text-sm font-medium text-gray-700">Payment Method</label>
-                            <select id="payment_method" name="payment_method" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="payment_method" name="payment_method" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="">Select Payment Method</option>
                                 <option value="Cash" {{ old('payment_method') == 'Cash' ? 'selected' : '' }}>Cash</option>
                                 <option value="Bank Transfer" {{ old('payment_method') == 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
@@ -216,12 +216,12 @@
 
                         <div class="md:col-span-2">
                             <label for="notes" class="block text-sm font-medium text-gray-700">Notes (optional)</label>
-                            <textarea name="notes" id="notes" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('notes') }}</textarea>
+                            <textarea name="notes" id="notes" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">{{ old('notes') }}</textarea>
                         </div>
                     </div>
 
                     <div class="mt-6">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Submit Payment</button>
+                        <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Submit Payment</button>
                     </div>
                 </form>
             </div>

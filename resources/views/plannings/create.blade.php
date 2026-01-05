@@ -22,8 +22,8 @@
                             <!-- Title -->
                             <div class="md:col-span-2">
                                 <label for="title" class="block text-sm font-medium text-gray-700">Title *</label>
-                                <input type="text" name="title" id="title" value="{{ old('title') }}" required
-                                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('title') border-red-300 @enderror">
+                                    <input type="text" name="title" id="title" value="{{ old('title') }}" required
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('title') border-red-300 @enderror">
                                 @error('title')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -33,7 +33,7 @@
                             <div class="md:col-span-2">
                                 <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                                 <textarea name="description" id="description" rows="3"
-                                          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('description') border-red-300 @enderror">{{ old('description') }}</textarea>
+                                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('description') border-red-300 @enderror">{{ old('description') }}</textarea>
                                 @error('description')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -43,7 +43,7 @@
                             <div class="md:col-span-2">
                                 <label for="objectives" class="block text-sm font-medium text-gray-700">Objectives</label>
                                 <textarea name="objectives" id="objectives" rows="4"
-                                          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('objectives') border-red-300 @enderror"
+                                          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('objectives') border-red-300 @enderror"
                                           placeholder="List the main objectives for this planning...">{{ old('objectives') }}</textarea>
                                 @error('objectives')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -54,7 +54,7 @@
                             <div>
                                 <label for="timeframe_type" class="block text-sm font-medium text-gray-700">Timeframe Type *</label>
                                 <select name="timeframe_type" id="timeframe_type" required
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('timeframe_type') border-red-300 @enderror">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('timeframe_type') border-red-300 @enderror">
                                     <option value="">Select timeframe type</option>
                                     @foreach($timeframeTypes as $key => $value)
                                         <option value="{{ $key }}" {{ old('timeframe_type') == $key ? 'selected' : '' }}>
@@ -71,7 +71,7 @@
                             <div>
                                 <label for="priority_level" class="block text-sm font-medium text-gray-700">Priority Level *</label>
                                 <select name="priority_level" id="priority_level" required
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('priority_level') border-red-300 @enderror">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('priority_level') border-red-300 @enderror">
                                     <option value="">Select priority level</option>
                                     @foreach($priorityLevels as $key => $value)
                                         <option value="{{ $key }}" {{ old('priority_level') == $key ? 'selected' : '' }}>
@@ -87,8 +87,8 @@
                             <!-- Start Date -->
                             <div>
                                 <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date *</label>
-                                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required
-                                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('start_date') border-red-300 @enderror">
+                                    <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('start_date') border-red-300 @enderror">
                                 @error('start_date')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -97,8 +97,8 @@
                             <!-- End Date -->
                             <div>
                                 <label for="end_date" class="block text-sm font-medium text-gray-700">End Date *</label>
-                                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" required
-                                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('end_date') border-red-300 @enderror">
+                                    <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" required
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('end_date') border-red-300 @enderror">
                                 @error('end_date')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -108,7 +108,7 @@
                             <div>
                                 <label for="group_cat_id" class="block text-sm font-medium text-gray-700">Group Category *</label>
                                 <select name="group_cat_id" id="group_cat_id" required
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('group_cat_id') border-red-300 @enderror">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('group_cat_id') border-red-300 @enderror">
                                     <option value="">Select group category</option>
                                     @foreach($groupCats as $groupCat)
                                         <option value="{{ $groupCat->id }}" {{ old('group_cat_id') == $groupCat->id ? 'selected' : '' }}>
@@ -125,7 +125,7 @@
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700">Status *</label>
                                 <select name="status" id="status" required
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('status') border-red-300 @enderror">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('status') border-red-300 @enderror">
                                     @foreach($statuses as $key => $value)
                                         <option value="{{ $key }}" {{ old('status', 'planning') == $key ? 'selected' : '' }}>
                                             {{ $value }}
@@ -144,9 +144,9 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm">$</span>
                                     </div>
-                                    <input type="number" name="budget_amount" id="budget_amount" value="{{ old('budget_amount') }}"
-                                           step="0.01" min="0"
-                                           class="pl-7 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('budget_amount') border-red-300 @enderror">
+                                     <input type="number" name="budget_amount" id="budget_amount" value="{{ old('budget_amount') }}"
+                                         step="0.01" min="0"
+                                         class="pl-7 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary @error('budget_amount') border-red-300 @enderror">
                                 </div>
                                 @error('budget_amount')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -159,9 +159,9 @@
                                 <div class="mt-2 space-y-2">
                                     @foreach($groupCats as $groupCat)
                                         <label class="flex items-center">
-                                            <input type="checkbox" name="group_list[]" value="{{ $groupCat->id }}"
-                                                   {{ in_array($groupCat->id, old('group_list', [])) ? 'checked' : '' }}
-                                                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                              <input type="checkbox" name="group_list[]" value="{{ $groupCat->id }}"
+                                                  {{ in_array($groupCat->id, old('group_list', [])) ? 'checked' : '' }}
+                                                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                             <span class="ml-2 text-sm text-gray-700">{{ $groupCat->name }}</span>
                                         </label>
                                     @endforeach
@@ -174,9 +174,9 @@
                             <!-- Public Visibility -->
                             <div class="md:col-span-2">
                                 <div class="flex items-center">
-                                    <input type="checkbox" name="is_public" id="is_public" value="1"
-                                           {{ old('is_public', true) ? 'checked' : '' }}
-                                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                     <input type="checkbox" name="is_public" id="is_public" value="1"
+                                         {{ old('is_public', true) ? 'checked' : '' }}
+                                         class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                     <label for="is_public" class="ml-2 block text-sm text-gray-700">
                                         Make this planning visible to all users
                                     </label>
@@ -191,7 +191,7 @@
                                 Cancel
                             </a>
                             <button type="submit"
-                                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                                    class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Create Planning
                             </button>
                         </div>

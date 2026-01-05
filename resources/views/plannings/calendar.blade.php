@@ -33,7 +33,7 @@
                                     ← Previous
                                 </a>
                                 <a href="{{ request()->fullUrlWithQuery(['view' => 'month', 'start_date' => now()->format('Y-m-d')]) }}"
-                                   class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-sm">
+                                   class="bg-primary hover:opacity-90 text-white font-bold py-1 px-3 rounded text-sm">
                                     Today
                                 </a>
                                 <a href="{{ request()->fullUrlWithQuery(['view' => 'month', 'start_date' => $startDate->copy()->addMonth()->format('Y-m-d')]) }}"

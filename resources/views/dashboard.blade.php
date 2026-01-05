@@ -7,14 +7,14 @@
                 </h2>
                 <p class="text-sm text-gray-500 mt-1">Community management system</p>
             </div>
-            <div class="flex space-x-2">
-                <select id="date-filter" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <div class="flex space-x-2">
+                <select id="date-filter" class="rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                     <option value="today">Today</option>
                     <option value="week" selected>This Week</option>
                     <option value="month">This Month</option>
                     <option value="year">This Year</option>
                 </select>
-                <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Refresh</button>
+                <button class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Refresh</button>
             </div>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Welcome Banner -->
-            <div class="mb-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-lg overflow-hidden">
+            <div class="mb-6 bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg overflow-hidden">
                 <div class="px-6 py-8 md:px-8 md:flex md:items-center md:justify-between">
                     <div>
                         <h2 class="text-2xl font-bold text-white">Welcome back, {{ Auth::user()->name }}!</h2>
@@ -36,7 +36,7 @@
                         </p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <a href="{{ route('tasks.create') }}" class="inline-block px-6 py-3 bg-white text-indigo-600 font-semibold rounded-md shadow-md hover:bg-indigo-50 transition">
+                        <a href="{{ route('tasks.create') }}" class="inline-block px-6 py-3 bg-white text-primary font-semibold rounded-md shadow-md hover:opacity-95 transition">
                             Create New Task
                         </a>
                     </div>

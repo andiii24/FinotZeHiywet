@@ -34,7 +34,7 @@
             $percent = $target > 0 ? min(100, round(($collected / $target) * 100)) : 0;
             $left = max(0, $target - $collected);
             $exceeded = max(0, $collected - $target);
-            $barColor = $collected >= $target ? 'bg-green-600' : 'bg-indigo-600';
+                        $barColor = $collected >= $target ? 'bg-green-600' : 'bg-primary';
         @endphp
         <div class="mt-4">
             <div class="text-sm text-gray-700">
@@ -99,7 +99,7 @@
                     @if(Auth::user()->isAdmin())
                         <div>
                             <label class="block text-sm font-medium text-gray-700">User (optional)</label>
-                            <select name="user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select name="user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="">Select user</option>
                                 @foreach(\App\Models\User::orderBy('name')->get(['id','name']) as $user)
                                     <option value="{{ $user->id }}" @selected(old('user_id')==$user->id)>{{ $user->name }}</option>
@@ -115,7 +115,7 @@
                             $min = $contribution->type === 'fixed' ? max($defaultSingle, 0) : 0;
                             $value = old('amount', $defaultSingle ?: $contribution->target_amount);
                         @endphp
-                        <input type="number" step="0.01" min="{{ $min }}" name="amount" value="{{ $value }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required />
+                        <input type="number" step="0.01" min="{{ $min }}" name="amount" value="{{ $value }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required />
                         @if($contribution->type === 'fixed')
                             <p class="text-xs text-gray-500 mt-1">Minimum allowed (per user): {{ number_format($min, 2) }}</p>
                         @else
@@ -125,7 +125,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Note (optional)</label>
-                        <textarea name="note" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('note') }}</textarea>
+                        <textarea name="note" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">{{ old('note') }}</textarea>
                         @error('note')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
@@ -134,7 +134,7 @@
                         @error('image')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div class="pt-2">
-                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Submit</button>
+                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition ease-in-out duration-150">Submit</button>
                     </div>
                 </form>
             </div>

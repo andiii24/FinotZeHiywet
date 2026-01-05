@@ -100,8 +100,8 @@
                                         <span class="text-sm font-medium text-gray-700">Progress</span>
                                         <span class="text-sm text-gray-600">{{ $planning->progress_percentage }}%</span>
                                     </div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="bg-indigo-600 h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-primary h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
                                     </div>
                                 </div>
 
@@ -154,7 +154,7 @@
                 <div class="border-b border-gray-200">
                     <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
                         <button onclick="showTab('tasks')" id="tasks-tab"
-                                class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-indigo-500 text-indigo-600">
+                            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-primary text-primary">
                             Tasks
                         </button>
                         <button onclick="showTab('budget')" id="budget-tab"
@@ -177,7 +177,7 @@
                     <div id="tasks-content" class="tab-content">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-medium text-gray-900">Tasks</h3>
-                            <button onclick="openTaskModal()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="openTaskModal()" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Add Task
                             </button>
                         </div>
@@ -230,7 +230,7 @@
                                                             <span>{{ $task->progress_percentage }}%</span>
                                                         </div>
                                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                                            <div class="bg-indigo-600 h-2 rounded-full" style="width: {{ $task->progress_percentage }}%"></div>
+                                                            <div class="bg-primary h-2 rounded-full" style="width: {{ $task->progress_percentage }}%"></div>
                                                         </div>
                                                     </div>
                                                 @endif
@@ -254,7 +254,7 @@
                     <div id="budget-content" class="tab-content hidden">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-medium text-gray-900">Budget Records</h3>
-                            <button onclick="openBudgetModal()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="openBudgetModal()" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Add Record
                             </button>
                         </div>
@@ -308,7 +308,7 @@
                     <div id="reminders-content" class="tab-content hidden">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-medium text-gray-900">Reminders</h3>
-                            <button onclick="openReminderModal()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="openReminderModal()" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Add Reminder
                             </button>
                         </div>
@@ -355,7 +355,7 @@
                     <div id="team-content" class="tab-content hidden">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-medium text-gray-900">Team Members</h3>
-                            <button onclick="openTeamModal()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="openTeamModal()" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Add Member
                             </button>
                         </div>
@@ -442,26 +442,26 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Title *</label>
-                            <input type="text" name="title" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="title" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"></textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Start Date *</label>
-                                <input type="date" name="start_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="date" name="start_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">End Date *</label>
-                                <input type="date" name="end_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="date" name="end_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Priority *</label>
-                                <select name="priority_level" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <select name="priority_level" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                     <option value="low">Low</option>
                                     <option value="medium">Medium</option>
                                     <option value="high">High</option>
@@ -470,7 +470,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Assigned To</label>
-                                <select name="assigned_to" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <select name="assigned_to" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                     <option value="">Select User</option>
                                     @foreach(\App\Models\User::all() as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -480,14 +480,14 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Estimated Hours</label>
-                            <input type="number" name="estimated_hours" step="0.5" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="number" name="estimated_hours" step="0.5" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
                     </div>
                     <div class="mt-6 flex justify-end space-x-3">
                         <button type="button" onclick="closeTaskModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                             Cancel
                         </button>
-                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                             Create Task
                         </button>
                     </div>
@@ -513,20 +513,20 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Category *</label>
-                            <input type="text" name="category" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="text" name="category" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"></textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Amount *</label>
-                                <input type="number" name="amount" step="0.01" min="0.01" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="number" name="amount" step="0.01" min="0.01" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Type *</label>
-                                <select name="budget_type" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <select name="budget_type" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                     <option value="expense">Expense</option>
                                     <option value="income">Income</option>
                                 </select>
@@ -534,18 +534,18 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Date *</label>
-                            <input type="date" name="date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="date" name="date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Notes</label>
-                            <textarea name="notes" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                                <textarea name="notes" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"></textarea>
                         </div>
                     </div>
                     <div class="mt-6 flex justify-end space-x-3">
                         <button type="button" onclick="closeBudgetModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                             Cancel
                         </button>
-                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                             Add Record
                         </button>
                     </div>
@@ -571,7 +571,7 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">User *</label>
-                            <select name="user_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <select name="user_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">Select User</option>
                                 @foreach(\App\Models\User::all() as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
@@ -580,7 +580,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Role *</label>
-                            <select name="role" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <select name="role" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="viewer">Viewer</option>
                                 <option value="contributor">Contributor</option>
                                 <option value="manager">Manager</option>
@@ -591,7 +591,7 @@
                         <button type="button" onclick="closeTeamModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                             Cancel
                         </button>
-                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                             Add Member
                         </button>
                     </div>
@@ -617,25 +617,25 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Title *</label>
-                            <input type="text" name="title" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="title" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea name="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"></textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Date *</label>
-                                <input type="date" name="reminder_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="date" name="reminder_date" required min="{{ date('Y-m-d') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Time *</label>
-                                <input type="time" name="reminder_time" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="time" name="reminder_time" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Type *</label>
-                            <select name="reminder_type" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <select name="reminder_type" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="email">Email</option>
                                 <option value="sms">SMS</option>
                                 <option value="push">Push Notification</option>
@@ -647,7 +647,7 @@
                         <button type="button" onclick="closeReminderModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                             Cancel
                         </button>
-                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                             Add Reminder
                         </button>
                     </div>
@@ -667,7 +667,7 @@
             // Remove active class from all tabs
             const tabs = document.querySelectorAll('[id$="-tab"]');
             tabs.forEach(tab => {
-                tab.classList.remove('border-indigo-500', 'text-indigo-600');
+                tab.classList.remove('border-primary', 'text-primary');
                 tab.classList.add('border-transparent', 'text-gray-500');
             });
 
@@ -677,7 +677,7 @@
             // Add active class to selected tab
             const activeTab = document.getElementById(tabName + '-tab');
             activeTab.classList.remove('border-transparent', 'text-gray-500');
-            activeTab.classList.add('border-indigo-500', 'text-indigo-600');
+            activeTab.classList.add('border-primary', 'text-primary');
 
             // Load data for the active tab
             if (tabName === 'budget') {

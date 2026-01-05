@@ -9,13 +9,13 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700">Title</label>
-            <input type="text" name="title" value="{{ old('title') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required />
+            <input type="text" name="title" value="{{ old('title') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required />
             @error('title')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-gray-700">Category</label>
-            <select name="social_contribution_category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+            <select name="social_contribution_category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required>
                 <option value="">Select a category</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}" @selected(old('social_contribution_category_id')==$category->id)>{{ $category->name }}</option>
@@ -27,12 +27,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700">Date</label>
-                <input type="date" name="date" value="{{ old('date') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required />
+                <input type="date" name="date" value="{{ old('date') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required />
                 @error('date')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Type</label>
-                <select name="type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                <select name="type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required>
                     <option value="open" @selected(old('type')==='open')>Open</option>
                     <option value="fixed" @selected(old('type')==='fixed')>Fixed</option>
                 </select>
@@ -42,13 +42,13 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700">Target Amount</label>
-                <input type="number" step="0.01" name="target_amount" value="{{ old('target_amount') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required />
+                <input type="number" step="0.01" name="target_amount" value="{{ old('target_amount') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" required />
                 <p class="text-xs text-gray-500 mt-1">Total expected across all contributors.</p>
                 @error('target_amount')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Single Amount (optional)</label>
-                <input type="number" step="0.01" name="single_amount" value="{{ old('single_amount') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" oninput="this.max = document.querySelector('[name=target_amount]').value || null;" />
+                <input type="number" step="0.01" name="single_amount" value="{{ old('single_amount') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" oninput="this.max = document.querySelector('[name=target_amount]').value || null;" />
                 <p class="text-xs text-gray-500 mt-1">Shown as default when contributing. For Fixed, users must give at least this amount.</p>
                 @error('single_amount')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
             </div>
@@ -58,18 +58,18 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700">Location (optional)</label>
-            <input type="text" name="location" value="{{ old('location') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+            <input type="text" name="location" value="{{ old('location') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" />
             @error('location')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-gray-700">Description</label>
-            <textarea name="description" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description') }}</textarea>
+            <textarea name="description" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">{{ old('description') }}</textarea>
             @error('description')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
         <div class="pt-4">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Create</button>
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition ease-in-out duration-150">Create</button>
             <a href="{{ route('social-contributions.index') }}" class="ml-2 text-gray-600 hover:text-gray-800">Cancel</a>
         </div>
     </form>

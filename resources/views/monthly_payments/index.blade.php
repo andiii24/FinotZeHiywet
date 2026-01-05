@@ -190,7 +190,7 @@
                                     <div class="flex space-x-2">
                                         <a href="{{ route('monthly-payments.show', $payment->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">View</a>
                                         @if(Auth::user()->isAdmin() || Auth::id() == $payment->user_id)
-                                            <a href="{{ route('monthly-payments.edit', $payment->id) }}" class="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">Edit</a>
+                                            <a href="{{ route('monthly-payments.edit', $payment->id) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
                                         @endif
                                         @if(Auth::user()->isAdmin())
                                             @if($payment->status === 'pending')

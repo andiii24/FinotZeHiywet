@@ -31,12 +31,13 @@
                             <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
                             <input type="text" name="search" id="search" value="{{ request('search') }}"
                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
 
                         <div>
                             <label for="timeframe_type" class="block text-sm font-medium text-gray-700">Timeframe</label>
                             <select name="timeframe_type" id="timeframe_type"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Timeframes</option>
                                 @foreach($timeframeTypes as $key => $value)
                                     <option value="{{ $key }}" {{ request('timeframe_type') == $key ? 'selected' : '' }}>
@@ -50,6 +51,7 @@
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                             <select name="status" id="status"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Statuses</option>
                                 @foreach($statuses as $key => $value)
                                     <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
@@ -63,6 +65,7 @@
                             <label for="priority_level" class="block text-sm font-medium text-gray-700">Priority</label>
                             <select name="priority_level" id="priority_level"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Priorities</option>
                                 @foreach($priorityLevels as $key => $value)
                                     <option value="{{ $key }}" {{ request('priority_level') == $key ? 'selected' : '' }}>
@@ -76,6 +79,7 @@
                             <label for="group_cat_id" class="block text-sm font-medium text-gray-700">Group Category</label>
                             <select name="group_cat_id" id="group_cat_id"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Groups</option>
                                 @foreach($groupCats as $groupCat)
                                     <option value="{{ $groupCat->id }}" {{ request('group_cat_id') == $groupCat->id ? 'selected' : '' }}>
@@ -87,7 +91,7 @@
 
                         <div class="md:col-span-5">
                             <button type="submit"
-                                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                                    class="bg-primary hover:opacity-90 text-white font-bold py-2 px-4 rounded">
                                 Filter
                             </button>
                             <a href="{{ route('plannings.index') }}"
@@ -177,6 +181,7 @@
                                                     </div>
                                                     <div class="w-full bg-gray-200 rounded-full h-2">
                                                         <div class="bg-indigo-600 h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
+                                                            <div class="bg-primary h-2 rounded-full" style="width: {{ $planning->progress_percentage }}%"></div>
                                                     </div>
                                                 </div>
                                             @endif
@@ -218,6 +223,7 @@
                             <div class="mt-6">
                                 <a href="{{ route('plannings.create') }}"
                                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                                   class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:opacity-90">
                                     Create Planning
                                 </a>
                             </div>
