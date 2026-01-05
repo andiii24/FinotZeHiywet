@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('planning_budgets', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('planning_id')->constrained('plannings')->onDelete('cascade');
+            $table->string('category');
+            $table->text('description')->nullable();
+            $table->decimal('amount', 15, 2);
+            $table->enum('budget_type', ['income', 'expense']);
+            $table->date('date');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->string('receipt_image')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamps();
+
+            $table->index(['planning_id', 'budget_type']);
+            $table->index('date');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('planning_budgets');
+    }
+};
