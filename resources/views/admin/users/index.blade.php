@@ -10,6 +10,73 @@
             <a href="{{ route('admin.users.create') }}" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">Create New User</a>
         </div>
 
+        <form method="GET" action="{{ route('admin.users.index') }}" class="mb-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+                <div class="xl:col-span-2">
+                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        value="{{ request('search') }}"
+                        placeholder="Search by name, email, job title, or work place"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                </div>
+
+                <div>
+                    <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                    <select
+                        name="role"
+                        id="role"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                        <option value="">All roles</option>
+                        <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="user" {{ request('role') === 'user' ? 'selected' : '' }}>User</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="group_cat_id" class="block text-sm font-medium text-gray-700 mb-1">Group</label>
+                    <select
+                        name="group_cat_id"
+                        id="group_cat_id"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                        <option value="">All groups</option>
+                        @foreach ($groupCats as $groupCat)
+                            <option value="{{ $groupCat->id }}" {{ (string) request('group_cat_id') === (string) $groupCat->id ? 'selected' : '' }}>
+                                {{ $groupCat->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label for="work_status" class="block text-sm font-medium text-gray-700 mb-1">Work Status</label>
+                    <select
+                        name="work_status"
+                        id="work_status"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                        <option value="">All statuses</option>
+                        <option value="1" {{ request('work_status') === '1' ? 'selected' : '' }}>Working</option>
+                        <option value="0" {{ request('work_status') === '0' ? 'selected' : '' }}>Not Working</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">
+                    Apply Filters
+                </button>
+                <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">
+                    Reset
+                </a>
+            </div>
+        </form>
+
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-200">
                 <thead>
