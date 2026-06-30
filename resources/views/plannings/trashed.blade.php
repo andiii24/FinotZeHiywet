@@ -61,7 +61,7 @@
                                                             {{ $planning->description ? Str::limit($planning->description, 50) : 'No description' }}
                                                         </div>
                                                         <div class="text-xs text-gray-400">
-                                                            Created by {{ $planning->creator->name }}
+                                                            Created by {{ $planning->creator?->name ?? 'Unknown User' }}
                                                         </div>
                                                     </div>
                                                 </div>

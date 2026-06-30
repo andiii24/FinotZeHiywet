@@ -86,7 +86,7 @@
                                 </div>
                                 <div>
                                     <span class="font-medium text-gray-900">Created by:</span>
-                                    <span class="text-gray-600">{{ $planning->creator->name }}</span>
+                                    <span class="text-gray-600">{{ $planning->creator?->name ?? 'Unknown User' }}</span>
                                 </div>
                             </div>
                         </div>
