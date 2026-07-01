@@ -31,7 +31,6 @@
                             <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
                             <input type="text" name="search" id="search" value="{{ request('search') }}"
                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                         </div>
 
                         <div>
@@ -51,7 +50,6 @@
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                             <select name="status" id="status"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Statuses</option>
                                 @foreach($statuses as $key => $value)
                                     <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
@@ -65,7 +63,6 @@
                             <label for="priority_level" class="block text-sm font-medium text-gray-700">Priority</label>
                             <select name="priority_level" id="priority_level"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Priorities</option>
                                 @foreach($priorityLevels as $key => $value)
                                     <option value="{{ $key }}" {{ request('priority_level') == $key ? 'selected' : '' }}>
@@ -79,7 +76,6 @@
                             <label for="group_cat_id" class="block text-sm font-medium text-gray-700">Group Category</label>
                             <select name="group_cat_id" id="group_cat_id"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <option value="">All Groups</option>
                                 @foreach($groupCats as $groupCat)
                                     <option value="{{ $groupCat->id }}" {{ request('group_cat_id') == $groupCat->id ? 'selected' : '' }}>
