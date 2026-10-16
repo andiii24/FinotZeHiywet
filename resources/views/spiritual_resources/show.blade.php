@@ -15,17 +15,6 @@
                     </div>
                 </div>
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-                @if ($message = Session::get('error'))
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6 flex flex-wrap justify-between items-center gap-3">
                         <div>
@@ -161,45 +150,90 @@
                 @if(Auth::user()->isAdmin() && $resource->isPending())
                     <div class="mt-8 border-t border-gray-200 pt-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">Review Submission</h3>
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <form action="{{ route('spiritual-resources.review', $resource) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="action" value="approve">
-                                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
-                                        onclick="return confirm('Approve this resource and add it to the library?')">
-                                    Approve
-                                </button>
-                            </form>
-                            <form action="{{ route('spiritual-resources.review', $resource) }}" method="POST" class="flex-1 max-w-lg">
-                                @csrf
-                                <input type="hidden" name="action" value="reject">
-                                <label for="rejection_reason" class="block text-sm font-medium text-gray-700 mb-1">Rejection Reason</label>
-                                <textarea name="rejection_reason" id="rejection_reason" rows="2" required
-                                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary mb-2"
-                                          placeholder="Explain why this submission is being rejected...">{{ old('rejection_reason') }}</textarea>
-                                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                                        onclick="return confirm('Reject this resource suggestion?')">
-                                    Reject
-                                </button>
-                            </form>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button"
+                                    onclick="approveResource({{ $resource->id }}, @js($resource->title))"
+                                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+                                Approve
+                            </button>
+                            <button type="button"
+                                    onclick="rejectResource({{ $resource->id }}, @js($resource->title))"
+                                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
+                                Reject
+                            </button>
                         </div>
                     </div>
                 @endif
 
                 @if(Auth::user()->isAdmin())
                     <div class="mt-6">
-                        <form action="{{ route('spiritual-resources.destroy', $resource) }}" method="POST" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                                    onclick="return confirm('Are you sure you want to permanently delete this resource?')">
-                                Delete Resource
-                            </button>
-                        </form>
+                        <button type="button"
+                                onclick="deleteResource({{ $resource->id }}, @js($resource->title))"
+                                class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
+                            Delete Resource
+                        </button>
                     </div>
                 @endif
             </div>
         </div>
     </div>
 </div>
+
+@if(Auth::user()->isAdmin())
+<script>
+function approveResource(resourceId, title) {
+    AppSwal.confirm({
+        title: 'Approve Resource?',
+        html: `<div class="text-left"><p><strong>Title:</strong> ${title}</p><p class="text-green-600 font-semibold mt-2">This will add the resource to the library.</p></div>`,
+        icon: 'question',
+        confirmButtonColor: '#10b981',
+        confirmButtonText: 'Yes, Approve',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            AppSwal.post(`/spiritual-resources/${resourceId}/review`, { action: 'approve' });
+        }
+    });
+}
+
+function rejectResource(resourceId, title) {
+    AppSwal.confirm({
+        title: 'Reject Resource?',
+        html: `<div class="text-left mb-3"><p><strong>Title:</strong> ${title}</p><p class="text-red-600 font-semibold mt-2">This suggestion will not appear in the library.</p></div>`,
+        icon: 'warning',
+        confirmButtonColor: '#ef4444',
+        confirmButtonText: 'Yes, Reject',
+        input: 'textarea',
+        inputLabel: 'Rejection Reason',
+        inputPlaceholder: 'Explain why this submission is being rejected...',
+        inputAttributes: { 'aria-label': 'Rejection reason' },
+        inputValidator: (value) => {
+            if (!value || !value.trim()) {
+                return 'Please provide a rejection reason.';
+            }
+        },
+    }).then((result) => {
+        if (result.isConfirmed) {
+            AppSwal.post(`/spiritual-resources/${resourceId}/review`, {
+                action: 'reject',
+                rejection_reason: result.value,
+            });
+        }
+    });
+}
+
+function deleteResource(resourceId, title) {
+    AppSwal.confirm({
+        title: 'Delete Resource?',
+        html: `<div class="text-left"><p><strong>Title:</strong> ${title}</p><p class="text-red-600 font-semibold mt-2">This action cannot be undone!</p></div>`,
+        icon: 'error',
+        confirmButtonColor: '#ef4444',
+        confirmButtonText: 'Yes, Delete Resource',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            AppSwal.post(`/spiritual-resources/${resourceId}`, { _method: 'DELETE' });
+        }
+    });
+}
+</script>
+@endif
 @endsection

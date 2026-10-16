@@ -15,35 +15,7 @@
                     </div>
                 </div>
 
-                @if(session('success'))
-                    <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm text-green-700">{{ session('success') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endif
 
-                @if(session('error'))
-                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm text-red-700">{{ session('error') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endif
 
                 @if(isset($backlog) && $backlog['total_owed'] > 0)
                     <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
@@ -102,17 +74,7 @@
                     @endif
                 @endif
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
 
-                @if ($message = Session::get('error'))
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
 
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
@@ -225,9 +187,8 @@
 </div>
 
 <script>
-// SweetAlert functions for payment actions
 function approvePayment(paymentId, userName, amount) {
-    Swal.fire({
+    AppSwal.confirm({
         title: 'Approve Payment?',
         html: `
             <div class="text-left">
@@ -237,39 +198,17 @@ function approvePayment(paymentId, userName, amount) {
             </div>
         `,
         icon: 'question',
-        showCancelButton: true,
         confirmButtonColor: '#10b981',
-        cancelButtonColor: '#6b7280',
         confirmButtonText: 'Yes, Approve Payment',
-        cancelButtonText: 'Cancel',
-        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Create and submit form
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = `/monthly-payments/${paymentId}/status`;
-
-            const csrfToken = document.createElement('input');
-            csrfToken.type = 'hidden';
-            csrfToken.name = '_token';
-            csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            const statusInput = document.createElement('input');
-            statusInput.type = 'hidden';
-            statusInput.name = 'status';
-            statusInput.value = 'approved';
-
-            form.appendChild(csrfToken);
-            form.appendChild(statusInput);
-            document.body.appendChild(form);
-            form.submit();
+            AppSwal.post(`/monthly-payments/${paymentId}/status`, { status: 'approved' });
         }
     });
 }
 
 function rejectPayment(paymentId, userName, amount) {
-    Swal.fire({
+    AppSwal.confirm({
         title: 'Reject Payment?',
         html: `
             <div class="text-left">
@@ -279,39 +218,17 @@ function rejectPayment(paymentId, userName, amount) {
             </div>
         `,
         icon: 'warning',
-        showCancelButton: true,
         confirmButtonColor: '#ef4444',
-        cancelButtonColor: '#6b7280',
         confirmButtonText: 'Yes, Reject Payment',
-        cancelButtonText: 'Cancel',
-        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Create and submit form
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = `/monthly-payments/${paymentId}/status`;
-
-            const csrfToken = document.createElement('input');
-            csrfToken.type = 'hidden';
-            csrfToken.name = '_token';
-            csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            const statusInput = document.createElement('input');
-            statusInput.type = 'hidden';
-            statusInput.name = 'status';
-            statusInput.value = 'rejected';
-
-            form.appendChild(csrfToken);
-            form.appendChild(statusInput);
-            document.body.appendChild(form);
-            form.submit();
+            AppSwal.post(`/monthly-payments/${paymentId}/status`, { status: 'rejected' });
         }
     });
 }
 
 function deletePayment(paymentId, userName, amount) {
-    Swal.fire({
+    AppSwal.confirm({
         title: 'Delete Payment?',
         html: `
             <div class="text-left">
@@ -321,33 +238,11 @@ function deletePayment(paymentId, userName, amount) {
             </div>
         `,
         icon: 'error',
-        showCancelButton: true,
         confirmButtonColor: '#ef4444',
-        cancelButtonColor: '#6b7280',
         confirmButtonText: 'Yes, Delete Payment',
-        cancelButtonText: 'Cancel',
-        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Create and submit form
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = `/monthly-payments/${paymentId}`;
-
-            const csrfToken = document.createElement('input');
-            csrfToken.type = 'hidden';
-            csrfToken.name = '_token';
-            csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            const methodInput = document.createElement('input');
-            methodInput.type = 'hidden';
-            methodInput.name = '_method';
-            methodInput.value = 'DELETE';
-
-            form.appendChild(csrfToken);
-            form.appendChild(methodInput);
-            document.body.appendChild(form);
-            form.submit();
+            AppSwal.post(`/monthly-payments/${paymentId}`, { _method: 'DELETE' });
         }
     });
 }

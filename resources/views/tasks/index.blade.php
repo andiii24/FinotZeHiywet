@@ -10,11 +10,6 @@
                     <a href="{{ route('tasks.create') }}" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">Add New Task</a>
                 </div>
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
 
                 <!-- Task Filters -->
                 <div class="mb-6 bg-gray-50 p-4 rounded-md">
@@ -108,8 +103,8 @@
                                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                                                        onclick="return confirm('Are you sure you want to delete this task?')">
+                                                <button type="button" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                                                        onclick="AppSwal.confirmSubmit(this, { title: 'Delete?', text: 'Are you sure you want to delete this task?', icon: 'warning', confirmButtonText: 'Yes, delete' })">
                                                     Delete
                                                 </button>
                                             </form>

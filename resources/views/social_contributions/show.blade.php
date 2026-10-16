@@ -2,12 +2,6 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    @if(session('success'))
-        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">{{ session('success') }}</div>
-    @endif
-    @if(session('error'))
-        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded">{{ session('error') }}</div>
-    @endif
 
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-start justify-between">
@@ -77,10 +71,13 @@
                                 @endif
                             </div>
                             @if(Auth::user()->isAdmin())
-                                <form action="{{ route('social-contributors.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this contribution?')">
+                                <form action="{{ route('social-contributors.destroy', $item->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="text-red-600 hover:text-red-800 text-sm">Delete</button>
+                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm"
+                                            onclick="AppSwal.confirmSubmit(this, { title: 'Delete?', text: 'Delete this contribution?', icon: 'warning', confirmButtonText: 'Yes, delete' })">
+                                        Delete
+                                    </button>
                                 </form>
                             @endif
                         </div>
@@ -138,17 +135,6 @@
                     </div>
                 </form>
             </div>
-            @if($errors->any())
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Validation Error',
-                            html: `{!! implode('<br>', $errors->all()) !!}`,
-                        });
-                    });
-                </script>
-            @endif
         </div>
     </div>
 </div>

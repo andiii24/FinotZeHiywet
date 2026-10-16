@@ -16,12 +16,6 @@
                     </div>
                 </div>
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
                         <thead>
@@ -41,14 +35,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
                                             <a href="{{ route('spiritual-resource-categories.edit', $category) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
-                                            <form action="{{ route('spiritual-resource-categories.destroy', $category) }}" method="POST" class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                                                        onclick="return confirm('Remove this category? Resources will be kept and only unlinked from it.')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            <button type="button"
+                                                    onclick="deleteCategory({{ $category->id }}, @js($category->name), {{ $category->resources_count }})"
+                                                    class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                                                Delete
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -68,4 +59,26 @@
         </div>
     </div>
 </div>
+
+<script>
+function deleteCategory(categoryId, name, resourceCount) {
+    AppSwal.confirm({
+        title: 'Delete Category?',
+        html: `
+            <div class="text-left">
+                <p><strong>Category:</strong> ${name}</p>
+                <p><strong>Linked resources:</strong> ${resourceCount}</p>
+                <p class="text-amber-600 font-semibold mt-2">Resources will be kept and only unlinked from this category.</p>
+            </div>
+        `,
+        icon: 'warning',
+        confirmButtonColor: '#ef4444',
+        confirmButtonText: 'Yes, Delete Category',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            AppSwal.post(`/spiritual-resource-categories/${categoryId}`, { _method: 'DELETE' });
+        }
+    });
+}
+</script>
 @endsection

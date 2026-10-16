@@ -34,5 +34,7 @@
                 {{ $slot }}
             </div>
         </div>
+
+        @include('partials.swal')
     </body>
 </html>

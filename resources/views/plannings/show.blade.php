@@ -786,22 +786,12 @@
             today.setHours(0, 0, 0, 0);
 
             if (startDate < today) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Date!',
-                    text: 'Start date must be today or later.',
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error('Start date must be today or later.', 'Invalid Date!');
                 return;
             }
 
             if (endDate < startDate) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Date!',
-                    text: 'End date must be after or equal to start date.',
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error('End date must be after or equal to start date.', 'Invalid Date!');
                 return;
             }
 
@@ -859,32 +849,14 @@
                 console.log('Response data:', data);
                 if (data.success) {
                     closeTaskModal();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Task created successfully.',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload to show new task
-                    });
+                    AppSwal.success('Task created successfully.').then(() => { location.reload(); });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: data.message || 'Unknown error occurred.',
-                        confirmButtonText: 'OK'
-                    });
+                    AppSwal.error(data.message || 'Unknown error occurred.', 'Error!');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: error.message,
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error(error.message, 'Error!');
             });
         });
 
@@ -897,12 +869,7 @@
             today.setHours(0, 0, 0, 0);
 
             if (budgetDate < today) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Date!',
-                    text: 'Budget date must be today or later.',
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error('Budget date must be today or later.', 'Invalid Date!');
                 return;
             }
 
@@ -933,32 +900,16 @@
             .then(data => {
                 if (data.success) {
                     closeBudgetModal();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Budget record created successfully.',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
+                    AppSwal.success('Budget record created successfully.').then(() => {
                         loadBudgetData(); // Refresh budget data
                     });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: data.message || 'Unknown error occurred.',
-                        confirmButtonText: 'OK'
-                    });
+                    AppSwal.error(data.message || 'Unknown error occurred.', 'Error!');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: error.message,
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error(error.message, 'Error!');
             });
         });
 
@@ -971,12 +922,7 @@
             today.setHours(0, 0, 0, 0);
 
             if (reminderDate < today) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Date!',
-                    text: 'Reminder date must be today or later.',
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error('Reminder date must be today or later.', 'Invalid Date!');
                 return;
             }
 
@@ -995,32 +941,14 @@
             .then(data => {
                 if (data.success) {
                     closeReminderModal();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Reminder created successfully.',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload to show new reminder
-                    });
+                    AppSwal.success('Reminder created successfully.').then(() => { location.reload(); });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: data.message || 'Unknown error occurred.',
-                        confirmButtonText: 'OK'
-                    });
+                    AppSwal.error(data.message || 'Unknown error occurred.', 'Error!');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: error.message,
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error(error.message, 'Error!');
             });
         });
 
@@ -1041,32 +969,14 @@
             .then(data => {
                 if (data.success) {
                     closeTeamModal();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Team member added successfully.',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload(); // Reload to show new team member
-                    });
+                    AppSwal.success('Team member added successfully.').then(() => { location.reload(); });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: data.message || 'Unknown error occurred.',
-                        confirmButtonText: 'OK'
-                    });
+                    AppSwal.error(data.message || 'Unknown error occurred.', 'Error!');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: error.message,
-                    confirmButtonText: 'OK'
-                });
+                AppSwal.error(error.message, 'Error!');
             });
         });
 

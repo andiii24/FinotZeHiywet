@@ -13,16 +13,6 @@
                     </div>
                 </div>
 
-                @if ($errors->any())
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-                        <p class="font-bold">Please fix the following errors:</p>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <form action="{{ route('events.update', $event->id) }}" method="POST" class="mt-6">
                     @csrf

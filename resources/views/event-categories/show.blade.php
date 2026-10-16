@@ -15,11 +15,6 @@
                     </div>
                 </div>
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
 
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-6">
                     <div class="px-4 py-5 sm:px-6">
@@ -105,8 +100,8 @@
                         <form action="{{ route('event-categories.destroy', $category->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                                    onclick="return confirm('Are you sure you want to delete this category? This will also delete all associated events.')">
+                            <button type="button" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+                                    onclick="AppSwal.confirmSubmit(this, { title: 'Delete?', text: 'Are you sure you want to delete this category? This will also delete all associated events.', icon: 'warning', confirmButtonText: 'Yes, delete' })">
                                 Delete Category
                             </button>
                         </form>

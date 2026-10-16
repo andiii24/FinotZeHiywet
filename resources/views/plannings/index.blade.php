@@ -232,36 +232,15 @@
 
     <script>
         function deletePlanning(planningId, planningTitle) {
-            Swal.fire({
+            AppSwal.confirm({
                 title: 'Delete Planning?',
                 text: `Are you sure you want to delete "${planningTitle}"? This will move it to trash and can be restored later.`,
                 icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#ef4444',
                 confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Create and submit the form
-                    const form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = `/plannings/${planningId}`;
-
-                    const csrfToken = document.createElement('input');
-                    csrfToken.type = 'hidden';
-                    csrfToken.name = '_token';
-                    csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-                    const methodField = document.createElement('input');
-                    methodField.type = 'hidden';
-                    methodField.name = '_method';
-                    methodField.value = 'DELETE';
-
-                    form.appendChild(csrfToken);
-                    form.appendChild(methodField);
-                    document.body.appendChild(form);
-                    form.submit();
+                    AppSwal.post(`/plannings/${planningId}`, { _method: 'DELETE' });
                 }
             });
         }

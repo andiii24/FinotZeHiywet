@@ -15,11 +15,6 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             @if($plannings->count() > 0)
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -99,8 +94,8 @@
                                                     <!-- Restore Button -->
                                                     <form action="{{ route('plannings.restore', $planning) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit"
-                                                                onclick="return confirm('Are you sure you want to restore this planning?')"
+                                                        <button type="button"
+                                                                onclick="AppSwal.confirmSubmit(this, { title: 'Restore?', text: 'Are you sure you want to restore this planning?', icon: 'question', confirmButtonText: 'Yes, restore' })"
                                                                 class="text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200 px-3 py-1 rounded text-sm">
                                                             Restore
                                                         </button>
@@ -110,8 +105,8 @@
                                                     <form action="{{ route('plannings.force-delete', $planning) }}" method="POST" class="inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit"
-                                                                onclick="return confirm('Are you sure you want to permanently delete this planning? This action cannot be undone!')"
+                                                        <button type="button"
+                                                                onclick="AppSwal.confirmSubmit(this, { title: 'Delete permanently?', text: 'Are you sure you want to permanently delete this planning? This action cannot be undone!', icon: 'error', confirmButtonText: 'Yes, delete permanently' })"
                                                                 class="text-red-600 hover:text-red-900 bg-red-100 hover:bg-red-200 px-3 py-1 rounded text-sm">
                                                             Delete Forever
                                                         </button>

@@ -24,16 +24,6 @@
                     </div>
                 </div>
 
-                @if ($message = Session::get('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-                @if ($message = Session::get('error'))
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
 
                 <div class="mb-6 bg-gray-50 p-4 rounded-md">
                     <form action="{{ route('spiritual-resources.index') }}" method="GET" class="flex flex-wrap gap-4">

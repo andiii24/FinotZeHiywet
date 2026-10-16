@@ -11,17 +11,6 @@
                     <div class="card-body">
                         <a href="{{ route('group_cats.index') }}" class="btn btn-primary mb-3">Back to List</a>
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <strong>Error!</strong> Please check the form fields.<br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form action="{{ route('group_cats.store') }}" method="POST">
                             @csrf
 

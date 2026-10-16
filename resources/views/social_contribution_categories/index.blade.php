@@ -9,9 +9,6 @@
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">{{ session('success') }}</div>
-    @endif
 
     <div class="bg-white rounded-lg shadow">
         <table class="min-w-full divide-y divide-gray-200">

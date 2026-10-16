@@ -50,10 +50,13 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
-                            <form action="{{ route('social-contributors.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this contribution?')">
+                            <form action="{{ route('social-contributors.destroy', $item->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-red-600 hover:text-red-800">Delete</button>
+                                <button type="button" class="text-red-600 hover:text-red-800"
+                                        onclick="AppSwal.confirmSubmit(this, { title: 'Delete?', text: 'Delete this contribution?', icon: 'warning', confirmButtonText: 'Yes, delete' })">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>

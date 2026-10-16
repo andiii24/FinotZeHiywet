@@ -122,8 +122,8 @@
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                                                onclick="return confirm('Are you sure you want to delete this user?')">
+                                        <button type="button" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                                                onclick="AppSwal.confirmSubmit(this, { title: 'Delete?', text: 'Are you sure you want to delete this user?', icon: 'warning', confirmButtonText: 'Yes, delete' })">
                                             Delete
                                         </button>
                                     </form>
