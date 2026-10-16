@@ -109,6 +109,39 @@
                 Events
             </a>
 
+            <!-- Spiritual Resource Library -->
+            @php
+                $pendingResourceCount = Auth::user()->isAdmin()
+                    ? \App\Models\SpiritualResource::pending()->count()
+                    : 0;
+            @endphp
+            <a href="{{ route('spiritual-resources.index') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('spiritual-resources.*') && !request()->routeIs('spiritual-resource-categories.*') ? 'bg-primary text-white' : 'text-white hover:bg-primary hover:text-white' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                </svg>
+                <span class="flex-1">Resource Library</span>
+                @if($pendingResourceCount > 0)
+                    <span class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-primary bg-secondary rounded-full">{{ $pendingResourceCount }}</span>
+                @endif
+            </a>
+            @if(Auth::user()->isAdmin())
+                <a href="{{ route('spiritual-resource-categories.index') }}" class="ml-8 group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('spiritual-resource-categories.*') ? 'bg-primary text-white' : 'text-white hover:bg-primary hover:text-white' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h4.5a.5.5 0 00.5-.5V15a3 3 0 013-3h3.5a.5.5 0 00.5-.5V5a2 2 0 00-2-2H4z" />
+                    </svg>
+                    Resource Categories
+                </a>
+                @if($pendingResourceCount > 0)
+                    <a href="{{ route('spiritual-resources.index', ['status' => 'pending']) }}" class="ml-8 group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request('status') === 'pending' && request()->routeIs('spiritual-resources.index') ? 'bg-primary text-white' : 'text-white hover:bg-primary hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                        </svg>
+                        Pending Reviews
+                        <span class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-primary bg-secondary rounded-full">{{ $pendingResourceCount }}</span>
+                    </a>
+                @endif
+            @endif
+
             <!-- Tasks -->
             <a href="{{ route('tasks.index') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('tasks.*') ? 'bg-primary text-white' : 'text-white hover:bg-primary hover:text-white' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -207,6 +240,17 @@
                             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                         </svg>
                         Event Management
+                    </a>
+
+                    <!-- Resource Library Management -->
+                    <a href="{{ route('spiritual-resources.index') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('spiritual-resources.*') ? 'bg-primary text-white' : 'text-white hover:bg-primary hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                        </svg>
+                        Resource Library
+                        @if($pendingResourceCount > 0)
+                            <span class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-primary bg-secondary rounded-full">{{ $pendingResourceCount }}</span>
+                        @endif
                     </a>
 
                     <!-- System Settings -->

@@ -17,6 +17,8 @@ use App\Http\Controllers\PlanningBudgetController;
 use App\Http\Controllers\PlanningReminderController;
 use App\Http\Controllers\PlanningTeamController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SpiritualResourceController;
+use App\Http\Controllers\SpiritualResourceCategoryController;
 use App\Http\Controllers\Admin\GroupCatController as AdminGroupCatController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\MonthlyPaymentSettingController;
@@ -111,6 +113,19 @@ Route::middleware('auth')->group(function () {
     Route::post('plannings/{planning}/team', [PlanningTeamController::class, 'store'])->name('plannings.team.store');
     Route::put('plannings/{planning}/team/{user}', [PlanningTeamController::class, 'update'])->name('plannings.team.update');
     Route::delete('plannings/{planning}/team/{user}', [PlanningTeamController::class, 'destroy'])->name('plannings.team.destroy');
+
+    // Spiritual Resource Library
+    Route::get('spiritual-resources/suggest', [SpiritualResourceController::class, 'suggest'])
+        ->name('spiritual-resources.suggest');
+    Route::post('spiritual-resources/suggest', [SpiritualResourceController::class, 'storeSuggestion'])
+        ->name('spiritual-resources.store-suggestion');
+    Route::get('spiritual-resources/my-submissions', [SpiritualResourceController::class, 'mySubmissions'])
+        ->name('spiritual-resources.my-submissions');
+    Route::post('spiritual-resources/{spiritual_resource}/review', [SpiritualResourceController::class, 'review'])
+        ->name('spiritual-resources.review');
+    Route::resource('spiritual-resources', SpiritualResourceController::class);
+    Route::resource('spiritual-resource-categories', SpiritualResourceCategoryController::class)
+        ->except(['show']);
 
 });
 

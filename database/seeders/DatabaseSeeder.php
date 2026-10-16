@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             SocialContributionCategorySeeder::class, // Create social contribution categories
             JobCategorySeeder::class, // Create job categories
             EventsCategorySeeder::class, // Create event categories
+            SpiritualResourceCategorySeeder::class, // Create spiritual resource categories
             PlanningSeeder::class, // Create planning data
         ]);
     }
