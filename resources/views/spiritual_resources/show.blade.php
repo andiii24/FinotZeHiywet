@@ -28,10 +28,27 @@
                 </div>
 
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                    <div class="px-4 py-5 sm:px-6 flex flex-wrap justify-between items-center gap-3">
-                        <div>
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">Resource Details</h3>
-                            <p class="mt-1 max-w-2xl text-sm text-gray-500">Information about this spiritual resource.</p>
+                    <div class="px-4 py-5 sm:px-6 flex flex-wrap justify-between items-start gap-4">
+                        <div class="flex items-start gap-4 min-w-0">
+                            {{-- Fixed thumbnail on detail page only --}}
+                            <div class="shrink-0 w-28 h-20 overflow-hidden rounded-md border border-gray-200 bg-gradient-to-br from-primary/10 to-secondary/20">
+                                @if($resource->cover_image)
+                                    <img src="{{ $resource->coverUrl() }}"
+                                         alt="{{ $resource->title }}"
+                                         class="h-full w-full object-cover object-center"
+                                         loading="eager">
+                                @else
+                                    <div class="flex h-full w-full items-center justify-center text-primary/35">
+                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Resource Details</h3>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-500">Information about this spiritual resource.</p>
+                            </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
@@ -46,12 +63,6 @@
                             @endif
                         </div>
                     </div>
-
-                    @if($resource->cover_image)
-                        <div class="px-4 sm:px-6 pb-4">
-                            <img src="{{ $resource->coverUrl() }}" alt="{{ $resource->title }}" class="max-h-64 rounded-md object-contain">
-                        </div>
-                    @endif
 
                     <div class="border-t border-gray-200">
                         <dl>

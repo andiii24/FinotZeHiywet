@@ -70,16 +70,31 @@
 
     <div>
         <label for="cover_image" class="block text-sm font-medium text-gray-700">Cover Image</label>
-        <input type="file" name="cover_image" id="cover_image" accept="image/*"
+        <input type="file" name="cover_image" id="cover_image" accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:opacity-90">
-        @if($resource?->cover_image)
-            <div class="mt-2 flex items-center gap-3">
-                <img src="{{ $resource->coverUrl() }}" alt="Cover" class="h-16 w-12 object-cover rounded">
-                <p class="text-xs text-gray-500">Upload a new image to replace the current cover.</p>
+        <div class="mt-2 rounded-md border border-secondary/40 bg-secondary/10 px-3 py-2 text-xs text-gray-700 space-y-1">
+            <p><span class="font-semibold text-primary">Recommended size:</span> 1200 × 675 pixels (16:9)</p>
+            <p>Images are cropped to a standard 16:9 frame in the library. Max file size: 5MB (JPG, PNG, or WebP).</p>
+        </div>
+        <div class="mt-3">
+            <p class="text-xs font-medium text-gray-600 mb-1.5">Preview</p>
+            <div class="relative w-full max-w-sm h-40 rounded-lg overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/20 border border-gray-200">
+                <img id="cover-preview"
+                     src="{{ $resource?->cover_image ? $resource->coverUrl() : '' }}"
+                     alt="Cover preview"
+                     class="h-full w-full object-cover object-center {{ $resource?->cover_image ? '' : 'hidden' }}">
+                <div id="cover-preview-placeholder"
+                     class="absolute inset-0 flex flex-col items-center justify-center text-primary/35 {{ $resource?->cover_image ? 'hidden' : '' }}">
+                    <svg class="h-8 w-8 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span class="text-xs">1200 × 675 preview</span>
+                </div>
             </div>
-        @else
-            <p class="mt-1 text-xs text-gray-500">Optional. Recommended for books (max 5MB).</p>
-        @endif
+            @if($resource?->cover_image)
+                <p class="mt-1.5 text-xs text-gray-500">Current cover shown. Choose a new file to replace it.</p>
+            @endif
+        </div>
     </div>
 
     <div class="md:col-span-2">
@@ -99,3 +114,25 @@
         {{ $submitLabel }}
     </button>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('cover_image');
+    const preview = document.getElementById('cover-preview');
+    const placeholder = document.getElementById('cover-preview-placeholder');
+    if (!input || !preview || !placeholder) return;
+
+    input.addEventListener('change', function () {
+        const file = this.files && this.files[0];
+        if (!file) return;
+
+        const url = URL.createObjectURL(file);
+        preview.src = url;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        preview.onload = function () {
+            URL.revokeObjectURL(url);
+        };
+    });
+});
+</script>

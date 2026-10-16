@@ -105,18 +105,30 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse ($resources as $resource)
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition border border-gray-100">
-                            @if($resource->cover_image)
-                                <div class="h-40 bg-gray-100 overflow-hidden">
-                                    <img src="{{ $resource->coverUrl() }}" alt="{{ $resource->title }}" class="w-full h-full object-cover">
-                                </div>
-                            @endif
-                            <div class="p-4">
-                                <div class="flex justify-between items-start gap-2 mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-900 leading-snug">{{ $resource->title }}</h3>
-                                    <span class="shrink-0 px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                        {{ $resource->type_label }}
-                                    </span>
+                        <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition border border-gray-100 flex flex-col">
+                            <div class="p-4 flex-1 flex flex-col">
+                                <div class="flex items-start gap-3 mb-3">
+                                    <div class="shrink-0 w-28 h-20 overflow-hidden rounded-md border border-gray-200 bg-gradient-to-br from-primary/10 to-secondary/20">
+                                        @if($resource->cover_image)
+                                            <img src="{{ $resource->coverUrl() }}" alt="{{ $resource->title }}"
+                                                 class="h-full w-full object-cover object-center"
+                                                 loading="lazy">
+                                        @else
+                                            <div class="flex h-full w-full items-center justify-center text-primary/35">
+                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                                </svg>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex justify-between items-start gap-2">
+                                            <h3 class="text-lg font-semibold text-gray-900 leading-snug">{{ $resource->title }}</h3>
+                                            <span class="shrink-0 px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                {{ $resource->type_label }}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 @if(Auth::user()->isAdmin() && request('status'))
@@ -152,7 +164,7 @@
                                     <div>Added {{ $resource->created_at->format('M d, Y') }}</div>
                                 </div>
 
-                                <div class="flex justify-end pt-1 border-t border-gray-100">
+                                <div class="flex justify-end pt-1 border-t border-gray-100 mt-auto">
                                     <a href="{{ route('spiritual-resources.show', $resource) }}"
                                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary/5 text-sm font-medium text-primary hover:bg-primary hover:text-white transition group">
                                         View Details
