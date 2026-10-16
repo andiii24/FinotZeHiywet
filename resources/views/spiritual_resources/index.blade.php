@@ -113,6 +113,10 @@
                                     @if($resource->author)
                                         <div>Author: {{ $resource->author }}</div>
                                     @endif
+                                    <div>Posted by: {{ $resource->submitter?->name ?? 'Unknown' }}</div>
+                                    @if($resource->isApproved() && $resource->reviewer)
+                                        <div>Approved by: {{ $resource->reviewer->name }}</div>
+                                    @endif
                                     <div>Added {{ $resource->created_at->format('M d, Y') }}</div>
                                 </div>
 

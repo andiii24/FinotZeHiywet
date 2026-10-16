@@ -35,8 +35,14 @@
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">Pending Review</span>
                                         @elseif($resource->isApproved())
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Approved</span>
+                                            @if($resource->reviewer)
+                                                <p class="text-xs text-gray-500 mt-1">Approved by {{ $resource->reviewer->name }}</p>
+                                            @endif
                                         @else
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Rejected</span>
+                                            @if($resource->reviewer)
+                                                <p class="text-xs text-gray-500 mt-1">Rejected by {{ $resource->reviewer->name }}</p>
+                                            @endif
                                             @if($resource->rejection_reason)
                                                 <p class="text-xs text-gray-500 mt-1 max-w-xs">{{ Str::limit($resource->rejection_reason, 80) }}</p>
                                             @endif

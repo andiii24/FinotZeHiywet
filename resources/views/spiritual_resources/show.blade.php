@@ -96,22 +96,36 @@
                                 </div>
                             @endif
                             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">Submitted By</dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $resource->submitter?->name ?? 'Unknown' }}</dd>
+                                <dt class="text-sm font-medium text-gray-500">Posted By</dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ $resource->submitter?->name ?? 'Unknown' }}
+                                    <span class="text-gray-500"> on {{ $resource->created_at->format('F d, Y') }}</span>
+                                </dd>
                             </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">Date Added</dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $resource->created_at->format('F d, Y') }}</dd>
-                            </div>
-                            @if($resource->reviewed_at)
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">Reviewed</dt>
+                            @if($resource->isApproved())
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">Approved By</dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        {{ $resource->reviewed_at->format('F d, Y') }}
-                                        @if($resource->reviewer)
-                                            by {{ $resource->reviewer->name }}
+                                        {{ $resource->reviewer?->name ?? 'Unknown' }}
+                                        @if($resource->reviewed_at)
+                                            <span class="text-gray-500"> on {{ $resource->reviewed_at->format('F d, Y') }}</span>
                                         @endif
                                     </dd>
+                                </div>
+                            @elseif($resource->isRejected())
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">Rejected By</dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ $resource->reviewer?->name ?? 'Unknown' }}
+                                        @if($resource->reviewed_at)
+                                            <span class="text-gray-500"> on {{ $resource->reviewed_at->format('F d, Y') }}</span>
+                                        @endif
+                                    </dd>
+                                </div>
+                            @elseif($resource->isPending())
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">Review Status</dt>
+                                    <dd class="mt-1 text-sm text-amber-700 sm:mt-0 sm:col-span-2">Awaiting admin approval</dd>
                                 </div>
                             @endif
                             @if($resource->isRejected() && $resource->rejection_reason)

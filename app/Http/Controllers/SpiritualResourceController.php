@@ -24,7 +24,7 @@ class SpiritualResourceController extends Controller
 
     public function index(Request $request)
     {
-        $query = SpiritualResource::with(['categories', 'submitter']);
+        $query = SpiritualResource::with(['categories', 'submitter', 'reviewer']);
 
         if (Auth::user()->isAdmin() && $request->filled('status')) {
             $query->where('status', $request->status);
@@ -177,7 +177,7 @@ class SpiritualResourceController extends Controller
 
     public function mySubmissions()
     {
-        $resources = SpiritualResource::with('categories')
+        $resources = SpiritualResource::with(['categories', 'reviewer'])
             ->where('submitted_by', Auth::id())
             ->latest()
             ->paginate(10);
