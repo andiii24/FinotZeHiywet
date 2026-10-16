@@ -15,10 +15,37 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('groupCat')->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $query = User::with('groupCat');
+
+        if ($request->filled('search')) {
+            $search = trim($request->input('search'));
+
+            $query->where(function ($userQuery) use ($search) {
+                $userQuery->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('job_title', 'like', '%' . $search . '%')
+                    ->orWhere('work_place', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->filled('role')) {
+            $query->where('role', $request->input('role'));
+        }
+
+        if ($request->filled('group_cat_id')) {
+            $query->where('group_cat_id', $request->integer('group_cat_id'));
+        }
+
+        if ($request->filled('work_status')) {
+            $query->where('work_status', $request->input('work_status') === '1');
+        }
+
+        $users = $query->orderBy('name')->paginate(10)->withQueryString();
+        $groupCats = Group_cat::orderBy('name')->get();
+
+        return view('admin.users.index', compact('users', 'groupCats'));
     }
 
     /**

@@ -21,7 +21,7 @@ class MonthlyPaymentController extends Controller
             $payments = Monthly_Payment::with('user')->orderBy('created_at', 'desc')->paginate(10);
             $backlog = null;
         } else {
-            $payments = Auth::user()->monthlyPayments()->orderBy('created_at', 'desc')->paginate(10);
+            $payments = Auth::user()->monthlyPayments()->with('user')->orderBy('created_at', 'desc')->paginate(10);
             $backlog = MonthlyPaymentSetting::calculatePaymentBacklog(Auth::user());
         }
 
@@ -256,7 +256,7 @@ class MonthlyPaymentController extends Controller
         $payment->save();
 
         // If payment is being approved, update the user's payment backlog
-        if ($request->status === 'approved' && $oldStatus !== 'approved') {
+        if ($request->status === 'approved' && $oldStatus !== 'approved' && $payment->user) {
             $this->updateUserPaymentBacklog($payment->user);
         }
 

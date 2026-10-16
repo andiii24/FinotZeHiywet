@@ -135,7 +135,7 @@
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $payment->id }}</td>
                                 @if(Auth::user()->isAdmin())
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $payment->user->name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $payment->user?->name ?? 'Unknown User' }}</td>
                                 @endif
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     @if($payment->month === 'backlog')
@@ -195,16 +195,16 @@
                                         @if(Auth::user()->isAdmin())
                                             @if($payment->status === 'pending')
                                                 <button type="button" class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
-                                                        onclick="approvePayment({{ $payment->id }}, '{{ $payment->user->name }}', {{ $payment->amount }})">
+                                                        onclick="approvePayment({{ $payment->id }}, @js($payment->user?->name ?? 'Unknown User'), {{ $payment->amount }})">
                                                     Approve
                                                 </button>
                                                 <button type="button" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                                                        onclick="rejectPayment({{ $payment->id }}, '{{ $payment->user->name }}', {{ $payment->amount }})">
+                                                        onclick="rejectPayment({{ $payment->id }}, @js($payment->user?->name ?? 'Unknown User'), {{ $payment->amount }})">
                                                     Reject
                                                 </button>
                                             @endif
                                             <button type="button" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                                                    onclick="deletePayment({{ $payment->id }}, '{{ $payment->user->name }}', {{ $payment->amount }})">
+                                                    onclick="deletePayment({{ $payment->id }}, @js($payment->user?->name ?? 'Unknown User'), {{ $payment->amount }})">
                                                 Delete
                                             </button>
                                         @endif
