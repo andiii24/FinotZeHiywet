@@ -10,14 +10,37 @@
                         <h2 class="text-2xl font-semibold text-gray-800">Spiritual Resource Library</h2>
                         <p class="text-sm text-gray-500 mt-1">Discover, access, and share spiritual and educational resources.</p>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="{{ route('spiritual-resources.my-submissions') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition text-sm">My Submissions</a>
-                        <a href="{{ route('spiritual-resources.suggest') }}" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition text-sm">Suggest a Resource</a>
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <a href="{{ route('spiritual-resources.my-submissions') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 hover:border-gray-400 transition">
+                            <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                            My Submissions
+                        </a>
+                        <a href="{{ route('spiritual-resources.suggest') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Suggest a Resource
+                        </a>
                         @if(Auth::user()->isAdmin())
-                            <a href="{{ route('spiritual-resources.create') }}" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition text-sm">Add Resource</a>
+                            <a href="{{ route('spiritual-resources.create') }}"
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-secondary text-sm font-semibold text-primary shadow-sm hover:brightness-95 hover:shadow-md transition">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                                Add Resource
+                            </a>
                             @if($pendingCount > 0)
-                                <a href="{{ route('spiritual-resources.index', ['status' => 'pending']) }}" class="px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 transition text-sm">
-                                    Pending Reviews ({{ $pendingCount }})
+                                <a href="{{ route('spiritual-resources.index', ['status' => 'pending']) }}"
+                                   class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-50 text-sm font-medium text-amber-800 border border-amber-200 shadow-sm hover:bg-amber-100 transition">
+                                    <svg class="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Pending Reviews
+                                    <span class="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full bg-amber-500 text-white text-xs font-bold">{{ $pendingCount }}</span>
                                 </a>
                             @endif
                         @endif
@@ -65,8 +88,17 @@
                             </div>
                         @endif
                         <div class="flex items-end gap-2">
-                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Filter</button>
-                            <a href="{{ route('spiritual-resources.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Clear</a>
+                            <button type="submit"
+                                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 transition">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                                </svg>
+                                Filter
+                            </button>
+                            <a href="{{ route('spiritual-resources.index') }}"
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-600 hover:bg-gray-50 transition">
+                                Clear
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -120,8 +152,14 @@
                                     <div>Added {{ $resource->created_at->format('M d, Y') }}</div>
                                 </div>
 
-                                <div class="flex justify-end">
-                                    <a href="{{ route('spiritual-resources.show', $resource) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition text-sm">View Details</a>
+                                <div class="flex justify-end pt-1 border-t border-gray-100">
+                                    <a href="{{ route('spiritual-resources.show', $resource) }}"
+                                       class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary/5 text-sm font-medium text-primary hover:bg-primary hover:text-white transition group">
+                                        View Details
+                                        <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>

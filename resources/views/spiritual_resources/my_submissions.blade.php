@@ -7,9 +7,21 @@
             <div class="p-6 text-gray-900">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">My Resource Submissions</h2>
-                    <div class="flex gap-2">
-                        <a href="{{ route('spiritual-resources.suggest') }}" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Suggest Another</a>
-                        <a href="{{ route('spiritual-resources.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Back to Library</a>
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <a href="{{ route('spiritual-resources.suggest') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Suggest Another
+                        </a>
+                        <a href="{{ route('spiritual-resources.index') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                            <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Library
+                        </a>
                     </div>
                 </div>
 
@@ -50,7 +62,13 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $resource->created_at->format('M d, Y') }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="{{ route('spiritual-resources.show', $resource) }}" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">View</a>
+                                        <a href="{{ route('spiritual-resources.show', $resource) }}"
+                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/5 text-sm font-medium text-primary hover:bg-primary hover:text-white transition">
+                                            View
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

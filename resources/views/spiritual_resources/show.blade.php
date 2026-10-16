@@ -7,11 +7,23 @@
             <div class="p-6 text-gray-900">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">{{ $resource->title }}</h2>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap items-center gap-2.5">
                         @if(Auth::user()->isAdmin())
-                            <a href="{{ route('spiritual-resources.edit', $resource) }}" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
+                            <a href="{{ route('spiritual-resources.edit', $resource) }}"
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Edit
+                            </a>
                         @endif
-                        <a href="{{ route('spiritual-resources.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Back to Library</a>
+                        <a href="{{ route('spiritual-resources.index') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                            <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Library
+                        </a>
                     </div>
                 </div>
 
@@ -89,7 +101,11 @@
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">File</dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        <a href="{{ asset('storage/' . $resource->file_path) }}" target="_blank" class="inline-flex items-center px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition text-sm">
+                                        <a href="{{ asset('storage/' . $resource->file_path) }}" target="_blank"
+                                           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
                                             Download / Open PDF
                                         </a>
                                     </dd>
@@ -163,27 +179,39 @@
 
                 @if(Auth::user()->isAdmin() && $resource->isPending())
                     <div class="mt-8 border-t border-gray-200 pt-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Review Submission</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <button type="button"
-                                    onclick="approveResource({{ $resource->id }}, @js($resource->title))"
-                                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
-                                Approve
-                            </button>
-                            <button type="button"
-                                    onclick="rejectResource({{ $resource->id }}, @js($resource->title))"
-                                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
-                                Reject
-                            </button>
+                        <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-5">
+                            <h3 class="text-lg font-medium text-gray-900 mb-1">Review Submission</h3>
+                            <p class="text-sm text-gray-600 mb-4">Approve to publish this resource, or reject it with a reason.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <button type="button"
+                                        onclick="approveResource({{ $resource->id }}, @js($resource->title))"
+                                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-600 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 hover:shadow-md transition">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Approve
+                                </button>
+                                <button type="button"
+                                        onclick="rejectResource({{ $resource->id }}, @js($resource->title))"
+                                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-sm font-medium text-red-700 border border-red-300 shadow-sm hover:bg-red-50 transition">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    Reject
+                                </button>
+                            </div>
                         </div>
                     </div>
                 @endif
 
                 @if(Auth::user()->isAdmin())
-                    <div class="mt-6">
+                    <div class="mt-6 pt-4 border-t border-gray-100">
                         <button type="button"
                                 onclick="deleteResource({{ $resource->id }}, @js($resource->title))"
-                                class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
+                                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-red-600 border border-red-200 bg-red-50 hover:bg-red-100 hover:border-red-300 transition">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
                             Delete Resource
                         </button>
                     </div>

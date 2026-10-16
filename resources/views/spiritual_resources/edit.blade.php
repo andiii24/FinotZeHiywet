@@ -7,7 +7,10 @@
             <div class="p-6 text-gray-900">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">Edit Resource</h2>
-                    <a href="{{ route('spiritual-resources.show', $resource) }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Cancel</a>
+                    <a href="{{ route('spiritual-resources.show', $resource) }}"
+                       class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                        Cancel
+                    </a>
                 </div>
 
 

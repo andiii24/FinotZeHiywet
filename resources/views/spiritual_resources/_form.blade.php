@@ -90,6 +90,12 @@
     </div>
 </div>
 
-<div class="mt-6">
-    <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 transition">{{ $submitLabel }}</button>
+<div class="mt-8 flex flex-wrap items-center gap-3">
+    <button type="submit"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        {{ $submitLabel }}
+    </button>
 </div>

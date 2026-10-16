@@ -10,7 +10,13 @@
                         <h2 class="text-2xl font-semibold text-gray-800">Add Resource</h2>
                         <p class="text-sm text-gray-500 mt-1">Resources added by administrators are published immediately.</p>
                     </div>
-                    <a href="{{ route('spiritual-resources.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Back to Library</a>
+                    <a href="{{ route('spiritual-resources.index') }}"
+                       class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                        <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Back to Library
+                    </a>
                 </div>
 
 

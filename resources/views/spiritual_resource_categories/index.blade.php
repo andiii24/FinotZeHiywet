@@ -10,9 +10,21 @@
                         <h2 class="text-2xl font-semibold text-gray-800">Resource Categories</h2>
                         <p class="text-sm text-gray-500 mt-1">Organize the Spiritual Resource Library by subject.</p>
                     </div>
-                    <div class="flex gap-2">
-                        <a href="{{ route('spiritual-resource-categories.create') }}" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">New Category</a>
-                        <a href="{{ route('spiritual-resources.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Back to Library</a>
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <a href="{{ route('spiritual-resource-categories.create') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-secondary text-sm font-semibold text-primary shadow-sm hover:brightness-95 hover:shadow-md transition">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            New Category
+                        </a>
+                        <a href="{{ route('spiritual-resources.index') }}"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                            <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Library
+                        </a>
                     </div>
                 </div>
 
@@ -33,11 +45,20 @@
                                     <td class="px-6 py-4 text-sm text-gray-500">{{ Str::limit($category->description, 80) ?: '—' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $category->resources_count }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <a href="{{ route('spiritual-resource-categories.edit', $category) }}" class="px-3 py-1 bg-primary text-white rounded-md hover:opacity-90 transition">Edit</a>
+                                        <div class="flex items-center gap-2">
+                                            <a href="{{ route('spiritual-resource-categories.edit', $category) }}"
+                                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-xs font-medium text-white shadow-sm hover:opacity-90 transition">
+                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                                Edit
+                                            </a>
                                             <button type="button"
                                                     onclick="deleteCategory({{ $category->id }}, @js($category->name), {{ $category->resources_count }})"
-                                                    class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-600 border border-red-200 bg-red-50 hover:bg-red-100 transition">
+                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
                                                 Delete
                                             </button>
                                         </div>
