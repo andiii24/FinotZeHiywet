@@ -108,6 +108,24 @@ class SpiritualResource extends Model
         return $this->status === self::STATUS_REJECTED;
     }
 
+    public function fileUrl(): ?string
+    {
+        if (!$this->file_path) {
+            return null;
+        }
+
+        return route('spiritual-resources.media', [$this->id, 'file']);
+    }
+
+    public function coverUrl(): ?string
+    {
+        if (!$this->cover_image) {
+            return null;
+        }
+
+        return route('spiritual-resources.media', [$this->id, 'cover']);
+    }
+
     /**
      * Normalize a URL for duplicate comparison.
      */

@@ -121,6 +121,9 @@ Route::middleware('auth')->group(function () {
         ->name('spiritual-resources.store-suggestion');
     Route::get('spiritual-resources/my-submissions', [SpiritualResourceController::class, 'mySubmissions'])
         ->name('spiritual-resources.my-submissions');
+    Route::get('spiritual-resources/{spiritual_resource}/media/{type}', [SpiritualResourceController::class, 'media'])
+        ->whereIn('type', ['file', 'cover'])
+        ->name('spiritual-resources.media');
     Route::post('spiritual-resources/{spiritual_resource}/review', [SpiritualResourceController::class, 'review'])
         ->name('spiritual-resources.review');
     Route::resource('spiritual-resources', SpiritualResourceController::class);

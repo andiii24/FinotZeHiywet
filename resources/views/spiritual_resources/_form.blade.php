@@ -62,7 +62,7 @@
         <input type="file" name="file" id="file" accept=".pdf,application/pdf"
                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:opacity-90">
         @if($resource?->file_path)
-            <p class="mt-1 text-xs text-gray-500">Current file: <a href="{{ asset('storage/' . $resource->file_path) }}" target="_blank" class="text-blue-600 underline">View</a>. Upload a new file to replace it.</p>
+            <p class="mt-1 text-xs text-gray-500">Current file: <a href="{{ $resource->fileUrl() }}" target="_blank" class="text-blue-600 underline">View</a>. Upload a new file to replace it.</p>
         @else
             <p class="mt-1 text-xs text-gray-500">Optional. Use for PDF resources (max 20MB).</p>
         @endif
@@ -74,7 +74,7 @@
                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:opacity-90">
         @if($resource?->cover_image)
             <div class="mt-2 flex items-center gap-3">
-                <img src="{{ asset('storage/' . $resource->cover_image) }}" alt="Cover" class="h-16 w-12 object-cover rounded">
+                <img src="{{ $resource->coverUrl() }}" alt="Cover" class="h-16 w-12 object-cover rounded">
                 <p class="text-xs text-gray-500">Upload a new image to replace the current cover.</p>
             </div>
         @else

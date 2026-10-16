@@ -19,6 +19,7 @@ class SpiritualResourceController extends Controller
             'suggest',
             'storeSuggestion',
             'mySubmissions',
+            'media',
         ]);
     }
 
@@ -95,16 +96,31 @@ class SpiritualResourceController extends Controller
         $resource = SpiritualResource::with(['categories', 'submitter', 'reviewer'])
             ->findOrFail($id);
 
-        $user = Auth::user();
-        $canView = $resource->isApproved()
-            || $user->isAdmin()
-            || $resource->submitted_by === $user->id;
-
-        if (!$canView) {
-            abort(403, 'You do not have permission to view this resource.');
-        }
+        $this->authorizeResourceView($resource);
 
         return view('spiritual_resources.show', compact('resource'));
+    }
+
+    /**
+     * Stream an uploaded file or cover image through Laravel.
+     * Avoids relying on the public/storage symlink (often blocked with 403 on hosts).
+     */
+    public function media(string $id, string $type)
+    {
+        $resource = SpiritualResource::findOrFail($id);
+        $this->authorizeResourceView($resource);
+
+        $path = match ($type) {
+            'file' => $resource->file_path,
+            'cover' => $resource->cover_image,
+            default => null,
+        };
+
+        if (!$path || !Storage::disk('public')->exists($path)) {
+            abort(404, 'File not found.');
+        }
+
+        return Storage::disk('public')->response($path);
     }
 
     public function edit(string $id)
@@ -263,6 +279,7 @@ class SpiritualResourceController extends Controller
                 Storage::disk('public')->delete($existing->file_path);
             }
             $data['file_path'] = $request->file('file')->store('spiritual_resources', 'public');
+            Storage::disk('public')->setVisibility($data['file_path'], 'public');
         } elseif ($existing) {
             $data['file_path'] = $existing->file_path;
         }
@@ -272,10 +289,23 @@ class SpiritualResourceController extends Controller
                 Storage::disk('public')->delete($existing->cover_image);
             }
             $data['cover_image'] = $request->file('cover_image')->store('spiritual_resource_covers', 'public');
+            Storage::disk('public')->setVisibility($data['cover_image'], 'public');
         } elseif ($existing) {
             $data['cover_image'] = $existing->cover_image;
         }
 
         return $data;
+    }
+
+    private function authorizeResourceView(SpiritualResource $resource): void
+    {
+        $user = Auth::user();
+        $canView = $resource->isApproved()
+            || $user->isAdmin()
+            || $resource->submitted_by === $user->id;
+
+        if (!$canView) {
+            abort(403, 'You do not have permission to view this resource.');
+        }
     }
 }

@@ -49,7 +49,7 @@
 
                     @if($resource->cover_image)
                         <div class="px-4 sm:px-6 pb-4">
-                            <img src="{{ asset('storage/' . $resource->cover_image) }}" alt="{{ $resource->title }}" class="max-h-64 rounded-md object-contain">
+                            <img src="{{ $resource->coverUrl() }}" alt="{{ $resource->title }}" class="max-h-64 rounded-md object-contain">
                         </div>
                     @endif
 
@@ -101,7 +101,7 @@
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">File</dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        <a href="{{ asset('storage/' . $resource->file_path) }}" target="_blank"
+                                        <a href="{{ $resource->fileUrl() }}" target="_blank"
                                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

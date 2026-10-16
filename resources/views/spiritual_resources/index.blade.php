@@ -108,7 +108,7 @@
                         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition border border-gray-100">
                             @if($resource->cover_image)
                                 <div class="h-40 bg-gray-100 overflow-hidden">
-                                    <img src="{{ asset('storage/' . $resource->cover_image) }}" alt="{{ $resource->title }}" class="w-full h-full object-cover">
+                                    <img src="{{ $resource->coverUrl() }}" alt="{{ $resource->title }}" class="w-full h-full object-cover">
                                 </div>
                             @endif
                             <div class="p-4">
